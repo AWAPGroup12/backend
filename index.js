@@ -1,26 +1,79 @@
-const { MongoClient } = require("mongodb");
+var express = require("express");
+var cors = require('cors')
+var app = express();
+var connection = require('./database');
 
-// Replace the uri string with your MongoDB deployment's connection string.
-const uri =
-  "mongodb+srv://Nitux:<voittaja>@awaprojectgroup12.ejqpb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+app.use(cors()) 
 
-const client = new MongoClient(uri);
 
-async function run() {
-  try {
-    await client.connect();
+app.listen(3001, function () {
+  console.log('App listening on port 3001');
+});
 
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
+app.get('/restaurants', function (req, res) {
+  connection.connect();
 
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
-    const movie = await movies.findOne(query);
+  connection.query('SELECT * FROM restaurant', function (error, results, fields) {
+    if (error) throw error;
+    res.json(results);
+    console.log(results);
+    
+  });
 
-    console.log(movie);
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+  connection.end();
+});
+
+
+app.get('/hamburgers', function (req, res) {
+  connection.connect();
+  
+  connection.query('SELECT * FROM hamburger', function (error, results, fields) {
+    if (error) throw error;
+    res.json(results);
+    console.log(results);
+    
+  });
+
+  connection.end();
+});
+
+
+app.get('/pizzas', function (req, res) {
+  connection.connect();
+
+  connection.query('SELECT * FROM pizza', function (error, results, fields) {
+    if (error) throw error;
+    res.json(results);
+    console.log(results);
+    
+  });
+
+  connection.end();
+});
+
+app.get('/sushis', function (req, res) {
+  connection.connect();
+
+  connection.query('SELECT * FROM sushi', function (error, results, fields) {
+    if (error) throw error;
+    res.json(results);
+    console.log(results);
+    
+  });
+
+  connection.end();
+});
+
+app.get('/drinks', function (req, res) {
+  connection.connect();
+
+  connection.query('SELECT * FROM drinks', function (error, results, fields) {
+    if (error) throw error;
+    res.json(results);
+    
+    console.log(results);
+    
+  });
+
+  connection.end();
+});

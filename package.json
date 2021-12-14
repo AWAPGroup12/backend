@@ -4,20 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AWAPGroup12/backend.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AWAPGroup12/backend/issues"
-  },
-  "homepage": "https://github.com/AWAPGroup12/backend#readme",
   "dependencies": {
-    "mongodb": "^4.2.0"
-  }
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+    
+  },
+  "devDependencies": {
+    "nodemon": "npm:undefined@*"
+  },
+  "proxy": "http://localhost:3001"
 }
